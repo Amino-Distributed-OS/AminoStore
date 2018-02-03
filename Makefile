@@ -33,7 +33,9 @@ LDFLAGS += $(LIBSSL_LDFLAGS)
 
 
 # Google test framework. This doesn't use pkgconfig
-GTEST_DIR := /usr/src/gtest
+#GTEST_DIR := /usr/src/gtest
+GTEST_DIR := ../../googletest/googletest
+CFLAGS += -I $(GTEST_DIR)/include/
 
 # Additional flags
 PARANOID = 1
