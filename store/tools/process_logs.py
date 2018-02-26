@@ -1,4 +1,5 @@
 import sys
+import statistics as st
 
 start, end = -1.0, -1.0
 
@@ -58,24 +59,28 @@ for line in open(sys.argv[1]):
     fExtra += extra
 
 if len(tLatency) == 0:
-  print "Zero completed transactions.."
+  print("Zero completed transactions..")
   sys.exit()
 
 tLatency.sort()
 sLatency.sort()
 fLatency.sort()
 
-print "Transactions(All/Success): ", len(tLatency), len(sLatency)
-print "Abort Rate: ", (float)(len(tLatency)-len(sLatency))/len(tLatency)
-print "Throughput (All/Success): ", len(tLatency)/(end-start), len(sLatency)/(end-start)
-print "Average Latency (all): ", sum(tLatency)/float(len(tLatency))
-print "Median  Latency (all): ", tLatency[len(tLatency)/2]
-print "Average Latency (success): ", sum(sLatency)/float(len(sLatency))
-print "Median  Latency (success): ", sLatency[len(sLatency)/2]
-print "Extra (all): ", tExtra
-print "Extra (success): ", sExtra
+print("Transactions(All/Success): ", len(tLatency), len(sLatency))
+print("Abort Rate: ", (float)(len(tLatency)-len(sLatency))/len(tLatency))
+print("Throughput (All/Success): ", len(tLatency)/(end-start), len(sLatency)/(end-start))
+#print("Average Latency (all): ", sum(tLatency)/float(len(tLatency)))
+print("Average Latency (all): ", st.mean(tLatency))
+#print("Median  Latency (all): ", tLatency[round(len(tLatency)/2]))
+print("Median  Latency (all): ", st.median(tLatency))
+#print("Average Latency (success): ", sum(sLatency)/float(len(sLatency)))
+print("Average Latency (success): ", st.mean(sLatency))
+#print("Median  Latency (success): ", sLatency[round(len(sLatency)/2]))
+print("Median  Latency (success): ", st.median(sLatency))
+print("Extra (all): ", tExtra)
+print("Extra (success): ", sExtra)
 if len(xLatency) > 0:
-  print "X Transaction Latency: ", sum(xLatency)/float(len(xLatency))
+  print("X Transaction Latency: ", sum(xLatency)/float(len(xLatency)))
 if len(fLatency) > 0:
-  print "Average Latency (failure): ", sum(fLatency)/float(len(tLatency)-len(sLatency))
-  print "Extra (failure): ", fExtra
+  print("Average Latency (failure): ", sum(fLatency)/float(len(tLatency)-len(sLatency)))
+  print("Extra (failure): ", fExtra)

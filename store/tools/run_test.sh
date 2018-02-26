@@ -8,7 +8,7 @@ trap '{
     ssh $host "killall -9 $client";
   done
 
-  echo "\nKilling all replics.. Please wait..";
+  echo "\nKilling all replicas.. Please wait..";
   for host in ${servers[@]}
   do
     ssh $host "killall -9 server";
@@ -16,14 +16,14 @@ trap '{
 }' INT
 
 # Paths to source code and logfiles.
-srcdir="/homes/sys/naveenks/Research/Tapir"
-logdir="/biggerraid/users/naveenks/tapir"
+srcdir="/home/ubuntu/DCAP-Tapir"
+logdir="/home/ubuntu/logs/tapir"
 
 # Machines on which replicas are running.
-replicas=("breakout" "pitfall" "qbert")
+replicas=("localhost" "localhost" "localhost")
 
 # Machines on which clients are running.
-clients=("spyhunter")
+clients=("localhost")
 
 client="benchClient"    # Which client (benchClient, retwisClient, etc)
 store="tapirstore"      # Which store (strongstore, weakstore, tapirstore)
@@ -31,7 +31,7 @@ mode="txn-l"            # Mode for storage system.
 
 nshard=1     # number of shards
 nclient=1    # number of clients to run (per machine)
-nkeys=100000 # number of keys to use
+nkeys=100 # number of keys to use
 rtime=10     # duration to run
 
 tlen=2       # transaction length
@@ -59,7 +59,7 @@ echo "Mode: $mode"
 
 # Generate keys to be used in the experiment.
 echo "Generating random keys.."
-python key_generator.py $nkeys > keys
+python3 key_generator.py $nkeys > keys
 
 
 # Start all replicas and timestamp servers
@@ -71,7 +71,7 @@ for ((i=0; i<$nshard; i++))
 do
   echo "Starting shard$i replicas.."
   $srcdir/store/tools/start_replica.sh shard$i $srcdir/store/tools/shard$i.config \
-    "$srcdir/store/$store/server -m $mode -f $srcdir/store/tools/keys -e $err -s $skew" $logdir
+    "$srcdir/store/$store/server -m $mode -f $srcdir/store/tools/keys" $logdir
 done
 
 
@@ -115,4 +115,4 @@ echo "Processing logs"
 cat $logdir/client.*.log | sort -g -k 3 > $logdir/client.log
 rm -f $logdir/client.*.log
 
-python $srcdir/store/tools/process_logs.py $logdir/client.log $rtime
+python3 $srcdir/store/tools/process_logs.py $logdir/client.log $rtime >  $logdir/summary.log
