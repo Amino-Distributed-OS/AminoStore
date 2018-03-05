@@ -246,13 +246,10 @@ main(int argc, char **argv)
                 "only %d replicas defined\n", index, config.n);
     }
 
-    printf("UDPTransport\n");
     UDPTransport transport(0.0, 0.0, 0);
 
-    printf("tapirstore::Server\n");
     tapirstore::Server server(linearizable);
 
-    printf("IRReplica\n");
     replication::ir::IRReplica replica(config, index, &transport, &server);
     
     if (keyPath) {
@@ -274,13 +271,11 @@ main(int argc, char **argv)
             }
 
             if (hash % maxShard == myShard) {
-                 printf("Adding key\n");
                  server.Load(key, "null", Timestamp());
             }
         }
         in.close();
     }
-    printf("transport.run\n");
     transport.Run();
 
     return 0;
