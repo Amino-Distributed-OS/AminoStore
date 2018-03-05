@@ -204,6 +204,8 @@ main(int argc, char **argv)
     }
     in.close();
 
+
+
     struct timeval t0, t1, t2;
     int nTransactions = 0; // Number of transactions attempted.
     int ttype; // Transaction type.
@@ -216,14 +218,16 @@ main(int argc, char **argv)
 
     while (1) {
         keyIdx.clear();
-            
         // Begin a transaction.
         client->Begin();
+
+
         gettimeofday(&t1, NULL);
         status = true;
 
         // Decide which type of retwis transaction it is going to be.
         ttype = rand() % 100;
+
 
         if (ttype < 5) {
             // 5% - Add user transaction. 1,3
@@ -231,16 +235,17 @@ main(int argc, char **argv)
             keyIdx.push_back(rand_key());
             keyIdx.push_back(rand_key());
             sort(keyIdx.begin(), keyIdx.end());
-            
+
             if ((ret = client->Get(keys[keyIdx[0]], value))) {
                 Warning("Aborting due to %s %d", keys[keyIdx[0]].c_str(), ret);
                 status = false;
             }
-            
             for (int i = 0; i < 3 && status; i++) {
                 client->Put(keys[keyIdx[i]], keys[keyIdx[i]]);
             }
             ttype = 1;
+
+
         } else if (ttype < 20) {
             // 15% - Follow/Unfollow transaction. 2,2
             keyIdx.push_back(rand_key());
@@ -255,6 +260,8 @@ main(int argc, char **argv)
                 client->Put(keys[keyIdx[i]], keys[keyIdx[i]]);
             }
             ttype = 2;
+
+
         } else if (ttype < 50) {
             // 30% - Post tweet transaction. 3,5
             keyIdx.push_back(rand_key());
@@ -275,6 +282,8 @@ main(int argc, char **argv)
                 client->Put(keys[keyIdx[i+3]], keys[keyIdx[i+3]]);
             }
             ttype = 3;
+
+
         } else {
             // 50% - Get followers/timeline transaction. rand(1,10),0
             int nGets = 1 + rand() % 10;
@@ -290,20 +299,26 @@ main(int argc, char **argv)
                 }
             }
             ttype = 4;
+
+
         }
+
 
         if (status) {
             status = client->Commit();
         } else {
             Debug("Aborting transaction due to failed Read");
         }
-        gettimeofday(&t2, NULL);
-        
-        long latency = (t2.tv_sec - t1.tv_sec) * 1000000 + (t2.tv_usec - t1.tv_usec);
-        int retries = (client->Stats())[0];
 
-        fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d %d", ++nTransactions, t1.tv_sec,
-                t1.tv_usec, t2.tv_sec, t2.tv_usec, latency, status?1:0, ttype, retries);
+
+        gettimeofday(&t2, NULL);
+        long latency = (t2.tv_sec - t1.tv_sec) * 1000000 + (t2.tv_usec - t1.tv_usec);
+
+
+//	int retries = (client->Stats())[0];
+
+        fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", ++nTransactions, t1.tv_sec,
+                t1.tv_usec, t2.tv_sec, t2.tv_usec, latency, status?1:0, ttype); //, retries);
         fprintf(stderr, "\n");
 
         if ( ((t2.tv_sec-t0.tv_sec)*1000000 + (t2.tv_usec-t0.tv_usec)) > duration*1000000) 
