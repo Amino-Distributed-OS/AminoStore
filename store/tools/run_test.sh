@@ -18,40 +18,43 @@ trap '{
 # Paths to source code and logfiles.
 srcdir="/home/ubuntu/DCAP-Tapir"
 logdir="/home/ubuntu/logs/tapir"
+configdir="/home/ubuntu/DCAP-Tapir/store/tools"
 
 # Machines on which replicas are running.
-replicas=("localhost" "localhost" "localhost")
+#replicas=("172.31.31.50" "172.31.22.77" "172.31.26.128")
+replicas=("172.31.41.123" "172.31.41.123" "172.31.41.123")
+port=50000
 
 # Machines on which clients are running.
 clients=("localhost")
 
-client="benchClient"    # Which client (benchClient, retwisClient, etc)
+client="retwisClient"    # Which client (benchClient, retwisClient, etc)
 store="tapirstore"      # Which store (strongstore, weakstore, tapirstore)
 mode="txn-l"            # Mode for storage system.
 
-nshard=1     # number of shards
-nclient=1    # number of clients to run (per machine)
+nshard=5      # number of shards
+
+ClientsPerHost=(1 2)    # number of clients to run per machine for different scenarios
 nkeys=100 # number of keys to use
-rtime=10     # duration to run
+rtime=30       # duration to run (in sec)
 
 tlen=2       # transaction length
-wper=0       # writes percentage
+wper=50       # writes percentage
 err=0        # error
 skew=0       # skew
-zalpha=-1    # zipf alpha (-1 to disable zipf and enable uniform)
+zalpha=0.75    # zipf alpha (-1 to disable zipf and enable uniform)
 
 # Print out configuration being used.
 echo "Configuration:"
 echo "Shards: $nshard"
-echo "Clients per host: $nclient"
-echo "Threads per client: $nthread"
+echo "Clients per host: ${ClientsPerHost[@]}"
+#echo "Threads per client: $nthread"
 echo "Keys: $nkeys"
 echo "Transaction Length: $tlen"
 echo "Write Percentage: $wper"
 echo "Error: $err"
 echo "Skew: $skew"
 echo "Zipf alpha: $zalpha"
-echo "Skew: $skew"
 echo "Client: $client"
 echo "Store: $store"
 echo "Mode: $mode"
@@ -59,7 +62,22 @@ echo "Mode: $mode"
 
 # Generate keys to be used in the experiment.
 echo "Generating random keys.."
-python3 key_generator.py $nkeys > keys
+python3 $srcdir/store/tools/key_generator.py $nkeys >  $srcdir/store/tools/keys
+for server in ${replicas[@]}
+do
+  ssh $server "python3 $srcdir/store/tools/key_generator.py $nkeys >  $srcdir/store/tools/keys"
+done
+
+
+
+# Generate config files for replicas and timeserver
+echo "Generating config files.."
+$srcdir/store/tools/generate_configs.sh $configdir $nshard $port ${replicas[@]}
+for server in ${replicas[@]}
+do
+  ssh $server "$srcdir/store/tools/generate_configs.sh $configdir $nshard $port ${replicas[@]}"
+done
+
 
 
 # Start all replicas and timestamp servers
@@ -71,13 +89,15 @@ for ((i=0; i<$nshard; i++))
 do
   echo "Starting shard$i replicas.."
   $srcdir/store/tools/start_replica.sh shard$i $srcdir/store/tools/shard$i.config \
-    "$srcdir/store/$store/server -m $mode -f $srcdir/store/tools/keys" $logdir
+    "$srcdir/store/$store/server -m $mode -f $srcdir/store/tools/keys -k $nkeys -n $i -N $nshard" $logdir
 done
 
 
 # Wait a bit for all replicas to start up
 sleep 2
 
+for nclient in ${ClientsPerHost[@]}
+do
 
 # Run the clients
 echo "Running the client(s)"
@@ -101,6 +121,15 @@ do
 done
 
 
+# Process logs
+echo "Processing logs"
+cat $logdir/client.*.log | sort -g -k 3 > $logdir/client.log
+rm -f $logdir/client.*.log
+
+python3 $srcdir/store/tools/process_logs.py $logdir/client.log $rtime >  $logdir/summary$nclient.log
+
+done
+
 # Kill all replicas
 echo "Cleaning up"
 $srcdir/store/tools/stop_replica.sh $srcdir/store/tools/shard.tss.config > /dev/null 2>&1
@@ -111,8 +140,8 @@ done
 
 
 # Process logs
-echo "Processing logs"
-cat $logdir/client.*.log | sort -g -k 3 > $logdir/client.log
-rm -f $logdir/client.*.log
+#echo "Processing logs"
+#cat $logdir/client.*.log | sort -g -k 3 > $logdir/client.log
+#rm -f $logdir/client.*.log
 
-python3 $srcdir/store/tools/process_logs.py $logdir/client.log $rtime >  $logdir/summary.log
+#python3 $srcdir/store/tools/process_logs.py $logdir/client.log $rtime >  $logdir/summary$nclient.log
