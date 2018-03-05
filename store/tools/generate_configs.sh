@@ -37,7 +37,7 @@ do
 done
 
 # Generate config for timeserver
-echo "f" $((f/2)) >  $dir/shard.tss.config
+echo "f" $((n/2)) >  $dir/shard.tss.config
 for server  in ${replicas[@]}
 do
     echo "replica" $server":"$port >> $dir/shard.tss.config
