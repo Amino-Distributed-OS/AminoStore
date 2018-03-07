@@ -10,6 +10,10 @@ tLatency = []
 sLatency = []
 fLatency = []
 
+tRetries = []
+sRetries = []
+fRetries  = []
+
 tExtra = 0.0
 sExtra = 0.0
 fExtra = 0.0
@@ -29,7 +33,7 @@ for line in open(sys.argv[1]):
     end = start + warmup
 
   fts = float(line[2])
-  
+
   if fts < start:
     continue
 
@@ -41,22 +45,25 @@ for line in open(sys.argv[1]):
   ttype = -1
   try:
     ttype = int(line[5])
-    extra = int(line[6])
+    retries = int(line[6])
   except:
-    extra = 0
+    retries = 0
 
-  if status == 1 and ttype == 2:
-    xLatency.append(latency)
+ # if status == 1 and ttype == 2:
+ #   xLatency.append(latency)
 
-  tLatency.append(latency) 
-  tExtra += extra
+  tLatency.append(latency)
+  tRetries.append(retries)
+#  tExtra += extra
 
   if status == 1:
     sLatency.append(latency)
-    sExtra += extra
+    sRetries.append(retries)
+#    sExtra += extra
   else:
     fLatency.append(latency)
-    fExtra += extra
+    fRetries.append(retries)
+#    fExtra += extra
 
 if len(tLatency) == 0:
   print("Zero completed transactions..")
@@ -69,18 +76,30 @@ fLatency.sort()
 print("Transactions(All/Success): ", len(tLatency), len(sLatency))
 print("Abort Rate: ", (float)(len(tLatency)-len(sLatency))/len(tLatency))
 print("Throughput (All/Success): ", len(tLatency)/(end-start), len(sLatency)/(end-start))
+
 #print("Average Latency (all): ", sum(tLatency)/float(len(tLatency)))
 print("Average Latency (all): ", st.mean(tLatency))
 #print("Median  Latency (all): ", tLatency[round(len(tLatency)/2]))
 print("Median  Latency (all): ", st.median(tLatency))
+print("Average Number of Retries (all):", st.mean(tRetries))
+
 #print("Average Latency (success): ", sum(sLatency)/float(len(sLatency)))
 print("Average Latency (success): ", st.mean(sLatency))
 #print("Median  Latency (success): ", sLatency[round(len(sLatency)/2]))
 print("Median  Latency (success): ", st.median(sLatency))
-print("Extra (all): ", tExtra)
-print("Extra (success): ", sExtra)
-if len(xLatency) > 0:
-  print("X Transaction Latency: ", sum(xLatency)/float(len(xLatency)))
+print("Average Number of Retries (success):", st.mean(sRetries))
+
+#print("Extra (all): ", tExtra)
+#print("Extra (success): ", sExtra)
+#if len(xLatency) > 0:
+#  print("X Transaction Latency: ", sum(xLatency)/float(len(xLatency)))
+
+
 if len(fLatency) > 0:
-  print("Average Latency (failure): ", sum(fLatency)/float(len(tLatency)-len(sLatency)))
-  print("Extra (failure): ", fExtra)
+  print("Average Latency (failure): ", st.mean(fLatency))
+  print("Median  Latency (failure): ", st.median(fLatency))
+  print ("Average Number of Retries: (failure):", st.mean(fRetries))
+
+
+#  print("Average Latency (failure): ", sum(fLatency)/float(len(tLatency)-len(sLatency)))
+#  print("Extra (failure): ", fExtra)
