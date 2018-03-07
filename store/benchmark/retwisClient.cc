@@ -315,10 +315,10 @@ main(int argc, char **argv)
         long latency = (t2.tv_sec - t1.tv_sec) * 1000000 + (t2.tv_usec - t1.tv_usec);
 
 
-//	int retries = (client->Stats())[0];
+	int retries = (client->Stats())[0];
 
-        fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", ++nTransactions, t1.tv_sec,
-                t1.tv_usec, t2.tv_sec, t2.tv_usec, latency, status?1:0, ttype); //, retries);
+        fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d %d", ++nTransactions, t1.tv_sec,
+                t1.tv_usec, t2.tv_sec, t2.tv_usec, latency, status?1:0, ttype, retries);
         fprintf(stderr, "\n");
 
         if ( ((t2.tv_sec-t0.tv_sec)*1000000 + (t2.tv_usec-t0.tv_usec)) > duration*1000000) 
