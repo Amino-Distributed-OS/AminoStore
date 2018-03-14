@@ -206,12 +206,13 @@ main(int argc, char **argv)
 
 
 
-    struct timeval t0, t1, t2;
+    struct timeval t0, t1, t2, t3, t4;
     int nTransactions = 0; // Number of transactions attempted.
     int ttype; // Transaction type.
     int ret;
     bool status;
     vector<int> keyIdx;
+    long time_diff = 0;
 
     gettimeofday(&t0, NULL);
     srand(t0.tv_sec + t0.tv_usec);
@@ -236,12 +237,38 @@ main(int argc, char **argv)
             keyIdx.push_back(rand_key());
             sort(keyIdx.begin(), keyIdx.end());
 
-            if ((ret = client->Get(keys[keyIdx[0]], value))) {
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
+            ret = client->Get(keys[keyIdx[0]], value);
+//debug code
+            gettimeofday(&t4, NULL);
+            time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+            fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                    t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, ret?1:0, 5);
+            fprintf(stderr, "\n");
+//end of debug code
+
+
+            if ((ret)) {
                 Warning("Aborting due to %s %d", keys[keyIdx[0]].c_str(), ret);
                 status = false;
             }
             for (int i = 0; i < 3 && status; i++) {
+//debug code
+                gettimeofday(&t3, NULL);
+//end of debug code
+
                 client->Put(keys[keyIdx[i]], keys[keyIdx[i]]);
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, 1, 6);
+                fprintf(stderr, "\n");
+//end of debug code
+
             }
             ttype = 1;
 
@@ -253,11 +280,43 @@ main(int argc, char **argv)
             sort(keyIdx.begin(), keyIdx.end());
 
             for (int i = 0; i < 2 && status; i++) {
-                if ((ret = client->Get(keys[keyIdx[i]], value))) {
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
+            ret =  client->Get(keys[keyIdx[i]], value);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, ret?1:0, 5);
+                fprintf(stderr, "\n");
+//end of debug code
+
+
+                if ((ret)) {
                     Warning("Aborting due to %s %d", keys[keyIdx[i]].c_str(), ret);
                     status = false;
                 }
+
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
                 client->Put(keys[keyIdx[i]], keys[keyIdx[i]]);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, 1, 6);
+                fprintf(stderr, "\n");
+//end of debug code
+
+
             }
             ttype = 2;
 
@@ -272,14 +331,59 @@ main(int argc, char **argv)
             sort(keyIdx.begin(), keyIdx.end());
 
             for (int i = 0; i < 3 && status; i++) {
-                if ((ret = client->Get(keys[keyIdx[i]], value))) {
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+                ret =  client->Get(keys[keyIdx[i]], value);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, ret?1:0, 5);
+                fprintf(stderr, "\n");
+//end of debug code
+
+
+
+                if ((ret)) {
                     Warning("Aborting due to %s %d", keys[keyIdx[i]].c_str(), ret);
                     status = false;
                 }
+
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
                 client->Put(keys[keyIdx[i]], keys[keyIdx[i]]);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, 1, 6);
+                fprintf(stderr, "\n");
+//end of debug code
+
             }
             for (int i = 0; i < 2; i++) {
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
                 client->Put(keys[keyIdx[i+3]], keys[keyIdx[i+3]]);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, 1, 6);
+                fprintf(stderr, "\n");
+//end of debug code
+
             }
             ttype = 3;
 
@@ -293,7 +397,21 @@ main(int argc, char **argv)
 
             sort(keyIdx.begin(), keyIdx.end());
             for (int i = 0; i < nGets && status; i++) {
-                if ((ret = client->Get(keys[keyIdx[i]], value))) {
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
+                ret =  client->Get(keys[keyIdx[i]], value);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, ret?1:0, 5);
+                fprintf(stderr, "\n");
+//end of debug code
+
+                if ((ret)) {
                     Warning("Aborting due to %s %d", keys[keyIdx[i]].c_str(), ret);
                     status = false;
                 }
@@ -305,7 +423,21 @@ main(int argc, char **argv)
 
 
         if (status) {
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
             status = client->Commit();
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, status?1:0, 7);
+                fprintf(stderr, "\n");
+//end of debug code
+
         } else {
             Debug("Aborting transaction due to failed Read");
         }
