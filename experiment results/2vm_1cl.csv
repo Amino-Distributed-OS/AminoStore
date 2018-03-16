@@ -1,4 +1,4 @@
-All time measurements in ms.  Number of clients:  1  per host. Number of hosts:  2
+All time measurements in ms.  Number of clients:  1  per host. Number of hosts:  2,,,,,,,,,,,
 Run, Put, Get, Commit, Thrput, AbortRatio, Latency(s), Retries/txn(s), Latency(f), Retries/txn(f), Thrput(merged), Skew
 0,0.01/0.01,0.23/0.24,1.57/1.18,387.6/456.9,0.01/0.0,2.18/2.18,0.0/0.0,64.89/2.2,0.0/0.0,844.5,-1.75
 1,0.01/0.01,0.23/0.24,1.18/1.19,459.6/453.0,0.0/0.0,2.17/2.2,0.0/0.0,2.45/2.67,0.0/0.0,909.6,-1.47
