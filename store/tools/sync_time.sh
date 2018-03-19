@@ -1,9 +1,9 @@
 #!/bin/bash
 
-replicas=("172.31.38.187" "172.31.30.122" "172.31.3.44")
+machines=("172.31.36.255" "172.31.46.100")
 
 
-for server in ${replicas[@]}
+for server in ${machines[@]}
 do
   echo "Measuring latency"
   ping -c 1 $server
@@ -13,20 +13,20 @@ do
   echo
 done
 
-echo "Forcing clock update for replicas"
-for server in ${replicas[@]}
+echo "Forcing clock update on remote machines"
+for server in ${machines[@]}
 do
   ssh $server "sudo service ntp stop ; sudo ntpdate -s us.pool.ntp.org ; sudo service ntp start "
 done
 
-echo "Forcing clock update for client"
+echo "Forcing clock update on local machine"
 sudo service ntp stop
 sudo ntpdate -s us.pool.ntp.org
 sudo service ntp start 
 
 sleep 5
 
-for server in ${replicas[@]}
+for server in ${machines[@]}
 do
   echo "Measuring latency"
   ping -c 1 $server
