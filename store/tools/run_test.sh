@@ -23,14 +23,14 @@ configdir="/home/ubuntu/DCAP-Tapir/store/tools"
 # Machines on which replicas are running.
 #replicas=("172.31.41.181" "172.31.41.181" "172.31.41.181")
 replicas=("172.31.38.187" "172.31.30.122" "172.31.3.44")
-#replicas=("172.31.38.187")
 
-nruns=5
+nruns=1
 
 port=50000
 
 # Machines on which clients are running.
 clients=("localhost")
+#clients=("172.31.36.255" "172.31.46.100")
 
 client="retwisClient"    # Which client (benchClient, retwisClient, etc)
 store="tapirstore"      # Which store (strongstore, weakstore, tapirstore)
@@ -38,9 +38,9 @@ mode="txn-l"            # Mode for storage system.
 
 nshard=10     # number of shards
 
-ClientsPerHost=(2)    # number of clients to run per machine for different scenarios
+ClientsPerHost=(5)    # number of clients to run per machine for different scenarios
 nkeys=100000 # number of keys to use
-rtime=10       # duration to run (in sec)
+rtime=30       # duration to run (in sec)
 
 tlen=2       # transaction length
 wper=50       # writes percentage
@@ -100,6 +100,9 @@ do
 echo "Run" $j
 logdir="$logdirOrig/run$j"
 
+echo "Measure skew.."
+ssh $clients  "$srcdir/store/tools/check_skew.sh > $logdir/skew.log"
+
 
 # Start all replicas and timestamp servers
   echo "Starting TimeStampServer replicas.."
@@ -148,8 +151,8 @@ logdir="$logdirOrig/run$j"
     for host in ${clients[@]}
     do
       ssh $host "cat $logdir/client.*.log | sort -g -k 3 > $logdir/client.log"
-#      ssh $host "rm -f $logdir/client.*.log"
-      ssh $host "python3 $srcdir/store/tools/process_logs.py $logdir/client.log $rtime >  $logdir/summary.$nclient.${#replicas[@]}.log"
+      ssh $host "rm -f $logdir/client.*.log"
+      ssh $host "python3 $srcdir/store/tools/process_logs.py $logdir/client.log $rtime >  $logdir/summary.$nclient.${#replicas[@]}.$rtime.log"
     done
   done
 
