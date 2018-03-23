@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Forced clock sync for local and remote machines
+# Provide remote machines IPs
 machines=("172.31.36.255" "172.31.46.100")
 
 
