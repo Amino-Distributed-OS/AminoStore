@@ -29,7 +29,6 @@ public class TapirClient extends DB {
       }
       
       public TableRow(String s) {
-         //System.out.println(s);
          String columns[] = s.split("\n");
          for (int i = 0; i < columns.length; i++) {
             String column[] = columns[i].split("\t");
@@ -97,9 +96,8 @@ public class TapirClient extends DB {
    @Override
    public int read(String table, String key, Set<String> fields,
                    HashMap<String, ByteIterator> result) {
-      String value = client.Get(table+key);
+      String value = client.Get(key);
 
-       //System.out.println("Read: "+ table + key + " Value:" + value);
        if (value.isEmpty()) {
           return 1;
        }
@@ -122,16 +120,14 @@ public class TapirClient extends DB {
 
     @Override
     public int insert(String table, String key, HashMap<String, ByteIterator> values) {
-       String value = client.Get(table + key);
+       String value = client.Get(key);
        TableRow row = new TableRow(StringByteIterator.getStringMap(values));
        TableRow existingRow;
 
-       //System.out.println(value);
        // This key doesn't exist, so just insert the whole row
        if (value.isEmpty()) {
-          //System.out.println("Insert: "+ table + key + " Values:" + row.toString());
-          return client.Put(table+key, row.toString());
-       }
+          return client.Put(key, row.toString());
+        }
        // Create a row out of the existing row
        existingRow = new TableRow(value);
 
@@ -141,28 +137,28 @@ public class TapirClient extends DB {
        }
 
        // Put the rown back in the store
-       //System.out.println("Insert: "+ table + key + " Values:" + existingRow.toString());
-       return client.Put(table+key, existingRow.toString());
+       return client.Put(key, existingRow.toString());
     }
 
     @Override
     public int delete(String table, String key) {
-       //System.out.println("Delete: " + table + key);
 
-       String value = client.Get(table+key);
+
+       String value = client.Get(key);
 
        if (value != "") {
           // Zero out the key if it exists
-          return client.Put(table+key, "");
+          return client.Put(key, "");
+
        }
        return 0;
     }
 
     @Override
     public int update(String table, String key, HashMap<String, ByteIterator> values) {
-       //System.out.println("Update: " + table + key);
 
-       String value = client.Get(table+key);
+
+       String value = client.Get(key);
        TableRow row = new TableRow(StringByteIterator.getStringMap(values));
        TableRow existingRow;
 
@@ -185,7 +181,8 @@ public class TapirClient extends DB {
        }
 
        // Put the key back in the store
-       return client.Put(table+key, existingRow.toString());
+       return client.Put(key, existingRow.toString());
+
     }
 
     @Override
