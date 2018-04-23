@@ -437,7 +437,7 @@ public class CoreWorkload extends Workload
  		{
  			keynum=Utils.hash(keynum);
  		}
- 		// System.err.println("key: " + keynum);
+//	        System.err.println("key: " + keynum);
 		return "user"+keynum;
 	}
 	HashMap<String, ByteIterator> buildValues() {
@@ -445,7 +445,7 @@ public class CoreWorkload extends Workload
 
  		for (int i=0; i<fieldcount; i++)
  		{
- 			String fieldkey="field"+i;
+                        String fieldkey="field"+i;
  			ByteIterator data= new RandomByteIterator(fieldlengthgenerator.nextInt());
  			values.put(fieldkey,data);
  		}
@@ -514,14 +514,15 @@ public class CoreWorkload extends Workload
 			ret = doTransactionReadModifyWrite(db);
 		}
 		
-		long en = System.nanoTime();
-		_measurements.measure(_operations.get(op), (int) ((en - st) / 1000));
-		if (ret)
+//		long en = System.nanoTime();
+//		_measurements.measure(_operations.get(op), (int) ((en - st) / 1000));
+//                System.err.println("op=" + _operations.get(op) + " ret=" + ret);
+/*		if (ret)
 			_measurements.reportReturnCode(_operations.get(op), -1);
 		else {
 			_measurements.reportReturnCode(_operations.get(op), 0);
 		}
-		return ret;
+*/		return ret;
 	}
 
     int nextKeynum() {
