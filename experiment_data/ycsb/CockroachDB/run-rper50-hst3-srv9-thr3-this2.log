@@ -1,0 +1,126 @@
+java -cp /home/ubuntu/CockroachDB-ycsb/postgresql-42.2.2.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/jdbc-binding/conf:/home/ubuntu/CockroachDB-ycsb/ycsb/conf:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/openjpa-jdbc-2.1.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/serp-1.13.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/commons-collections-3.2.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/commons-lang-2.4.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/core-0.12.0.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/commons-pool-1.5.4.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/geronimo-jta_1.1_spec-1.1.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/openjpa-lib-2.1.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/jackson-mapper-asl-1.9.4.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/openjpa-kernel-2.1.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/jackson-core-asl-1.9.4.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/HdrHistogram-2.1.4.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/htrace-core4-4.1.0-incubating.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/jdbc-binding-0.12.0.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/geronimo-jms_1.1_spec-1.1.1.jar com.yahoo.ycsb.Client -db com.yahoo.ycsb.db.JdbcDBClient -P /home/ubuntu/CockroachDB-ycsb/workloads/workload50 -P /home/ubuntu/CockroachDB-ycsb/cockroachdb.properties -threads 3 -p db.url=jdbc:postgresql://172.31.8.131:26257/test -p measurementtype=histogram -p histogram.buckets=25 -p operationcount=300000 -t
+YCSB Client 0.12.0
+Command line: -db com.yahoo.ycsb.db.JdbcDBClient -P /home/ubuntu/CockroachDB-ycsb/workloads/workload50 -P /home/ubuntu/CockroachDB-ycsb/cockroachdb.properties -threads 3 -p db.url=jdbc:postgresql://172.31.8.131:26257/test -p measurementtype=histogram -p histogram.buckets=25 -p operationcount=300000 -t
+Loading workload...
+Starting test.
+Adding shard node URL: jdbc:postgresql://172.31.8.131:26257/test
+Adding shard node URL: jdbc:postgresql://172.31.8.131:26257/test
+Adding shard node URL: jdbc:postgresql://172.31.8.131:26257/test
+Using shards: 1, batchSize:-1, fetchSize: -1
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+Using shards: 1, batchSize:-1, fetchSize: -1
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+Using shards: 1, batchSize:-1, fetchSize: -1
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+[OVERALL], RunTime(ms), 290559.0
+[OVERALL], Throughput(ops/sec), 1032.4925402413967
+[TOTAL_GCS_PS_Scavenge], Count, 18.0
+[TOTAL_GC_TIME_PS_Scavenge], Time(ms), 23.0
+[TOTAL_GC_TIME_%_PS_Scavenge], Time(%), 0.00791577614185071
+[TOTAL_GCS_PS_MarkSweep], Count, 0.0
+[TOTAL_GC_TIME_PS_MarkSweep], Time(ms), 0.0
+[TOTAL_GC_TIME_%_PS_MarkSweep], Time(%), 0.0
+[TOTAL_GCs], Count, 18.0
+[TOTAL_GC_TIME], Time(ms), 23.0
+[TOTAL_GC_TIME_%], Time(%), 0.00791577614185071
+[READ], Operations, 150179
+[READ], AverageLatency(us), 1530.2577524154508
+[READ], LatencyVariance(us), 2640877.7507751537
+[READ], MinLatency(us), 587
+[READ], MaxLatency(us), 100298
+[READ], 95thPercentileLatency(us), 3000
+[READ], 99thPercentileLatency(us), 7000
+[READ], Return=OK, 150179
+[READ], 0, 58979
+[READ], 1, 75606
+[READ], 2, 8067
+[READ], 3, 2577
+[READ], 4, 1559
+[READ], 5, 952
+[READ], 6, 557
+[READ], 7, 501
+[READ], 8, 353
+[READ], 9, 223
+[READ], 10, 146
+[READ], 11, 115
+[READ], 12, 91
+[READ], 13, 67
+[READ], 14, 49
+[READ], 15, 47
+[READ], 16, 41
+[READ], 17, 32
+[READ], 18, 27
+[READ], 19, 23
+[READ], 20, 18
+[READ], 21, 17
+[READ], 22, 22
+[READ], 23, 18
+[READ], 24, 7
+[READ], >25, 85
+[CLEANUP], Operations, 3
+[CLEANUP], AverageLatency(us), 155.0
+[CLEANUP], LatencyVariance(us), 8892.666666666664
+[CLEANUP], MinLatency(us), 80
+[CLEANUP], MaxLatency(us), 288
+[CLEANUP], 95thPercentileLatency(us), 0
+[CLEANUP], 99thPercentileLatency(us), 0
+[CLEANUP], 0, 3
+[CLEANUP], 1, 0
+[CLEANUP], 2, 0
+[CLEANUP], 3, 0
+[CLEANUP], 4, 0
+[CLEANUP], 5, 0
+[CLEANUP], 6, 0
+[CLEANUP], 7, 0
+[CLEANUP], 8, 0
+[CLEANUP], 9, 0
+[CLEANUP], 10, 0
+[CLEANUP], 11, 0
+[CLEANUP], 12, 0
+[CLEANUP], 13, 0
+[CLEANUP], 14, 0
+[CLEANUP], 15, 0
+[CLEANUP], 16, 0
+[CLEANUP], 17, 0
+[CLEANUP], 18, 0
+[CLEANUP], 19, 0
+[CLEANUP], 20, 0
+[CLEANUP], 21, 0
+[CLEANUP], 22, 0
+[CLEANUP], 23, 0
+[CLEANUP], 24, 0
+[CLEANUP], >25, 0
+[UPDATE], Operations, 149821
+[UPDATE], AverageLatency(us), 4262.860887325542
+[UPDATE], LatencyVariance(us), 1.5889126519170303E7
+[UPDATE], MinLatency(us), 1578
+[UPDATE], MaxLatency(us), 148187
+[UPDATE], 95thPercentileLatency(us), 10000
+[UPDATE], 99thPercentileLatency(us), 19000
+[UPDATE], Return=OK, 149821
+[UPDATE], 0, 0
+[UPDATE], 1, 19531
+[UPDATE], 2, 40338
+[UPDATE], 3, 28459
+[UPDATE], 4, 38777
+[UPDATE], 5, 5542
+[UPDATE], 6, 2722
+[UPDATE], 7, 2110
+[UPDATE], 8, 2366
+[UPDATE], 9, 2020
+[UPDATE], 10, 1644
+[UPDATE], 11, 1202
+[UPDATE], 12, 924
+[UPDATE], 13, 698
+[UPDATE], 14, 566
+[UPDATE], 15, 405
+[UPDATE], 16, 379
+[UPDATE], 17, 295
+[UPDATE], 18, 242
+[UPDATE], 19, 156
+[UPDATE], 20, 156
+[UPDATE], 21, 134
+[UPDATE], 22, 129
+[UPDATE], 23, 106
+[UPDATE], 24, 109
+[UPDATE], >25, 811
