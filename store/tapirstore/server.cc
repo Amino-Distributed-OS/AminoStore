@@ -271,12 +271,11 @@ main(int argc, char **argv)
             }
 
             if (hash % maxShard == myShard) {
-                server.Load(key, "null", Timestamp());
+                 server.Load(key, "null", Timestamp());
             }
         }
         in.close();
     }
-
     transport.Run();
 
     return 0;

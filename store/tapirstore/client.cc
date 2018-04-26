@@ -260,6 +260,7 @@ vector<int>
 Client::Stats()
 {
     vector<int> v;
+    v.push_back(retries);
     return v;
 }
 

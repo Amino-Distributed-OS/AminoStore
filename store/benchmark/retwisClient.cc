@@ -204,26 +204,31 @@ main(int argc, char **argv)
     }
     in.close();
 
-    struct timeval t0, t1, t2;
+
+
+    struct timeval t0, t1, t2, t3, t4;
     int nTransactions = 0; // Number of transactions attempted.
     int ttype; // Transaction type.
     int ret;
     bool status;
     vector<int> keyIdx;
+    long time_diff = 0;
 
     gettimeofday(&t0, NULL);
     srand(t0.tv_sec + t0.tv_usec);
 
     while (1) {
         keyIdx.clear();
-            
         // Begin a transaction.
         client->Begin();
+
+
         gettimeofday(&t1, NULL);
         status = true;
 
         // Decide which type of retwis transaction it is going to be.
         ttype = rand() % 100;
+
 
         if (ttype < 5) {
             // 5% - Add user transaction. 1,3
@@ -231,16 +236,43 @@ main(int argc, char **argv)
             keyIdx.push_back(rand_key());
             keyIdx.push_back(rand_key());
             sort(keyIdx.begin(), keyIdx.end());
-            
-            if ((ret = client->Get(keys[keyIdx[0]], value))) {
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
+            ret = client->Get(keys[keyIdx[0]], value);
+//debug code
+            gettimeofday(&t4, NULL);
+            time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+            fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                    t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, ret?1:0, 5);
+            fprintf(stderr, "\n");
+//end of debug code
+
+
+            if ((ret)) {
                 Warning("Aborting due to %s %d", keys[keyIdx[0]].c_str(), ret);
                 status = false;
             }
-            
             for (int i = 0; i < 3 && status; i++) {
+//debug code
+                gettimeofday(&t3, NULL);
+//end of debug code
+
                 client->Put(keys[keyIdx[i]], keys[keyIdx[i]]);
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, 1, 6);
+                fprintf(stderr, "\n");
+//end of debug code
+
             }
             ttype = 1;
+
+
         } else if (ttype < 20) {
             // 15% - Follow/Unfollow transaction. 2,2
             keyIdx.push_back(rand_key());
@@ -248,13 +280,47 @@ main(int argc, char **argv)
             sort(keyIdx.begin(), keyIdx.end());
 
             for (int i = 0; i < 2 && status; i++) {
-                if ((ret = client->Get(keys[keyIdx[i]], value))) {
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
+            ret =  client->Get(keys[keyIdx[i]], value);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, ret?1:0, 5);
+                fprintf(stderr, "\n");
+//end of debug code
+
+
+                if ((ret)) {
                     Warning("Aborting due to %s %d", keys[keyIdx[i]].c_str(), ret);
                     status = false;
                 }
+
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
                 client->Put(keys[keyIdx[i]], keys[keyIdx[i]]);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, 1, 6);
+                fprintf(stderr, "\n");
+//end of debug code
+
+
             }
             ttype = 2;
+
+
         } else if (ttype < 50) {
             // 30% - Post tweet transaction. 3,5
             keyIdx.push_back(rand_key());
@@ -265,16 +331,63 @@ main(int argc, char **argv)
             sort(keyIdx.begin(), keyIdx.end());
 
             for (int i = 0; i < 3 && status; i++) {
-                if ((ret = client->Get(keys[keyIdx[i]], value))) {
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+                ret =  client->Get(keys[keyIdx[i]], value);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, ret?1:0, 5);
+                fprintf(stderr, "\n");
+//end of debug code
+
+
+
+                if ((ret)) {
                     Warning("Aborting due to %s %d", keys[keyIdx[i]].c_str(), ret);
                     status = false;
                 }
+
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
                 client->Put(keys[keyIdx[i]], keys[keyIdx[i]]);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, 1, 6);
+                fprintf(stderr, "\n");
+//end of debug code
+
             }
             for (int i = 0; i < 2; i++) {
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
                 client->Put(keys[keyIdx[i+3]], keys[keyIdx[i+3]]);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, 1, 6);
+                fprintf(stderr, "\n");
+//end of debug code
+
             }
             ttype = 3;
+
+
         } else {
             // 50% - Get followers/timeline transaction. rand(1,10),0
             int nGets = 1 + rand() % 10;
@@ -284,29 +397,65 @@ main(int argc, char **argv)
 
             sort(keyIdx.begin(), keyIdx.end());
             for (int i = 0; i < nGets && status; i++) {
-                if ((ret = client->Get(keys[keyIdx[i]], value))) {
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
+                ret =  client->Get(keys[keyIdx[i]], value);
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, ret?1:0, 5);
+                fprintf(stderr, "\n");
+//end of debug code
+
+                if ((ret)) {
                     Warning("Aborting due to %s %d", keys[keyIdx[i]].c_str(), ret);
                     status = false;
                 }
             }
             ttype = 4;
+
+
         }
 
+
         if (status) {
+
+//debug code
+            gettimeofday(&t3, NULL);
+//end of debug code
+
             status = client->Commit();
+
+//debug code
+                gettimeofday(&t4, NULL);
+                time_diff = (t4.tv_sec - t3.tv_sec) * 1000000 + (t4.tv_usec - t3.tv_usec);
+                fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d", nTransactions+1, t3.tv_sec,
+                        t3.tv_usec, t4.tv_sec, t4.tv_usec, time_diff, status?1:0, 7);
+                fprintf(stderr, "\n");
+//end of debug code
+
         } else {
             Debug("Aborting transaction due to failed Read");
         }
+
+
         gettimeofday(&t2, NULL);
-        
         long latency = (t2.tv_sec - t1.tv_sec) * 1000000 + (t2.tv_usec - t1.tv_usec);
-        int retries = (client->Stats())[0];
+
+        int retries = 0;
+        if (!client->Stats().empty()) {
+            retries = client->Stats()[0];
+        }
 
         fprintf(stderr, "%d %ld.%06ld %ld.%06ld %ld %d %d %d", ++nTransactions, t1.tv_sec,
                 t1.tv_usec, t2.tv_sec, t2.tv_usec, latency, status?1:0, ttype, retries);
         fprintf(stderr, "\n");
 
-        if ( ((t2.tv_sec-t0.tv_sec)*1000000 + (t2.tv_usec-t0.tv_usec)) > duration*1000000) 
+        if (((t2.tv_sec-t0.tv_sec)*1000000 + (t2.tv_usec-t0.tv_usec)) > duration*1000000) 
             break;
     }
 
