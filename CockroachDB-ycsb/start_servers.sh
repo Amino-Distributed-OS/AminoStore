@@ -3,15 +3,21 @@
 # Script to start nodes for CockroachDB insecure cluster
 
 
-replicas=("172.31.43.8" "172.31.20.205" "172.31.8.131" "172.31.32.118" "172.31.26.209" "172.31.12.41"\
-            "172.31.35.12" "172.31.30.218" "172.31.10.193")
-locality=("us-1" "us-2" "us-3" "us-1" "us-2" "us-3" "us-1" "us-2" "us-3")
+replicas=("172.31.38.96" "172.31.26.122" "172.31.5.33")
+locality=("us-1" "us-2" "us-3")
 
 
 
 crdb_port=26257
 crdb_http_port=8080
 
+function joinBy {
+  delimiter="$1"
+
+  local IFS="$delimiter"
+  shift
+  echo "$*"
+}
 
 
 # Sync clock on replicas if needed
@@ -23,21 +29,23 @@ done
 sleep 10
 
 
+join_urls=()
+for i in "${!replicas[@]}"
+do
+  join_urls+=("${replicas[$i]}:$crdb_port")
+done
+
 
 # Start nodes
 for i in "${!replicas[@]}"
 do
   remote_cmd="cockroach start --background --insecure  --host=${replicas[$i]}\
       --port=$crdb_port --http-port=$crdb_http_port --store=type=mem,size=0.9 --logtostderr=NONE\
-     --locality=datacenter=${locality[$i]}  --cache=25%"
+      --locality=datacenter=${locality[$i]}  --cache=25% --log-dir=''  --join=`joinBy , ${join_urls[@]}` "
   echo "$remote_cmd"
-
-  if ((i==0)); then
-    ssh ${replicas[$i]} "$remote_cmd" &
-  else
-    ssh  ${replicas[$i]} "$remote_cmd --join=${replicas[0]}:$crdb_port" &
-  fi
-  sleep 10
+  ssh ${replicas[$i]} "$remote_cmd" &
+  sleep 5
 done
 
-
+echo "cockroach init --insecure --host=${replicas[0]} --log-dir='' --logtostderr=NONE"
+ssh ${replicas[0]} "cockroach init --insecure --host=${replicas[0]} --log-dir='' --logtostderr=NONE" &
