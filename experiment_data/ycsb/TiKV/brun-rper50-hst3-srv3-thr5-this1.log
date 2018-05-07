@@ -1,0 +1,22 @@
+time="2018-05-02T03:21:34Z" level=info msg="[pd] create pd client with endpoints [172.31.29.240:2379]"
+time="2018-05-02T03:21:34Z" level=info msg="[pd] leader switches to: http://172.31.29.240:2379, previous: "
+time="2018-05-02T03:21:34Z" level=info msg="[pd] init cluster id 6550755695932324779"
+UPDATE - Count: 16962, Avg(us): 2210, Min(us): 662, Max(us): 24153, 95th(us): 6000, 99th(us): 10000
+READ - Count: 16971, Avg(us): 725, Min(us): 171, Max(us): 76383, 95th(us): 3000, 99th(us): 6000
+UPDATE - Count: 33586, Avg(us): 2238, Min(us): 662, Max(us): 40080, 95th(us): 6000, 99th(us): 10000
+READ - Count: 33699, Avg(us): 725, Min(us): 169, Max(us): 76383, 95th(us): 3000, 99th(us): 6000
+READ - Count: 50281, Avg(us): 735, Min(us): 169, Max(us): 76383, 95th(us): 3000, 99th(us): 6000
+UPDATE - Count: 50293, Avg(us): 2236, Min(us): 662, Max(us): 40080, 95th(us): 6000, 99th(us): 10000
+UPDATE - Count: 67147, Avg(us): 2234, Min(us): 662, Max(us): 40080, 95th(us): 6000, 99th(us): 10000
+READ - Count: 67110, Avg(us): 733, Min(us): 164, Max(us): 76383, 95th(us): 3000, 99th(us): 6000
+READ - Count: 83843, Avg(us): 732, Min(us): 164, Max(us): 76383, 95th(us): 3000, 99th(us): 6000
+UPDATE - Count: 84019, Avg(us): 2233, Min(us): 662, Max(us): 40080, 95th(us): 6000, 99th(us): 10000
+UPDATE - Count: 100660, Avg(us): 2232, Min(us): 662, Max(us): 205103, 95th(us): 6000, 99th(us): 10000
+READ - Count: 100451, Avg(us): 738, Min(us): 164, Max(us): 371503, 95th(us): 3000, 99th(us): 6000
+UPDATE - Count: 117442, Avg(us): 2231, Min(us): 662, Max(us): 205103, 95th(us): 6000, 99th(us): 10000
+READ - Count: 117324, Avg(us): 738, Min(us): 164, Max(us): 371503, 95th(us): 3000, 99th(us): 6000
+READ - Count: 134960, Avg(us): 732, Min(us): 164, Max(us): 371503, 95th(us): 3000, 99th(us): 6000
+UPDATE - Count: 134593, Avg(us): 2226, Min(us): 662, Max(us): 205103, 95th(us): 6000, 99th(us): 10000
+Run finished, takes 1m29.989754919s
+UPDATE - Count: 149696, Avg(us): 2227, Min(us): 659, Max(us): 205103, 95th(us): 6000, 99th(us): 10000
+READ - Count: 150304, Avg(us): 733, Min(us): 164, Max(us): 371503, 95th(us): 3000, 99th(us): 6000

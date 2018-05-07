@@ -1,0 +1,38 @@
+time="2018-05-02T00:04:42Z" level=info msg="[pd] create pd client with endpoints [172.31.42.111:2379]"
+time="2018-05-02T00:04:42Z" level=info msg="[pd] leader switches to: http://172.31.29.240:2379, previous: "
+time="2018-05-02T00:04:42Z" level=info msg="[pd] init cluster id 6550755695932324779"
+UPDATE - Count: 8702, Avg(us): 2564, Min(us): 1049, Max(us): 48503, 95th(us): 8000, 99th(us): 12000
+READ - Count: 8907, Avg(us): 850, Min(us): 184, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+READ - Count: 17557, Avg(us): 850, Min(us): 181, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 17400, Avg(us): 2578, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+UPDATE - Count: 26133, Avg(us): 2573, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+READ - Count: 26345, Avg(us): 851, Min(us): 181, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+READ - Count: 35061, Avg(us): 851, Min(us): 181, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 34836, Avg(us): 2575, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+READ - Count: 43636, Avg(us): 849, Min(us): 181, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 43624, Avg(us): 2577, Min(us): 1038, Max(us): 204192, 95th(us): 9000, 99th(us): 12000
+UPDATE - Count: 52328, Avg(us): 2573, Min(us): 1038, Max(us): 204192, 95th(us): 9000, 99th(us): 12000
+READ - Count: 52492, Avg(us): 852, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 61094, Avg(us): 2569, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+READ - Count: 61434, Avg(us): 852, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+READ - Count: 69986, Avg(us): 854, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 69704, Avg(us): 2573, Min(us): 1038, Max(us): 204192, 95th(us): 9000, 99th(us): 12000
+READ - Count: 78746, Avg(us): 854, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 78486, Avg(us): 2571, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+UPDATE - Count: 87305, Avg(us): 2567, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+READ - Count: 87506, Avg(us): 855, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 96143, Avg(us): 2563, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+READ - Count: 96524, Avg(us): 854, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 104782, Avg(us): 2566, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+READ - Count: 105291, Avg(us): 853, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 113752, Avg(us): 2562, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+READ - Count: 114261, Avg(us): 851, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 122362, Avg(us): 2563, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+READ - Count: 122900, Avg(us): 853, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+READ - Count: 132390, Avg(us): 848, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 131725, Avg(us): 2551, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+UPDATE - Count: 141313, Avg(us): 2536, Min(us): 1038, Max(us): 204192, 95th(us): 8000, 99th(us): 12000
+READ - Count: 142094, Avg(us): 843, Min(us): 180, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+Run finished, takes 2m47.931815549s
+READ - Count: 150423, Avg(us): 834, Min(us): 177, Max(us): 47049, 95th(us): 4000, 99th(us): 8000
+UPDATE - Count: 149577, Avg(us): 2514, Min(us): 1037, Max(us): 204192, 95th(us): 8000, 99th(us): 12000

@@ -1,0 +1,26 @@
+time="2018-05-02T03:21:34Z" level=info msg="[pd] create pd client with endpoints [172.31.42.111:2379]"
+time="2018-05-02T03:21:34Z" level=info msg="[pd] leader switches to: http://172.31.29.240:2379, previous: "
+time="2018-05-02T03:21:34Z" level=info msg="[pd] init cluster id 6550755695932324779"
+READ - Count: 14442, Avg(us): 837, Min(us): 173, Max(us): 68485, 95th(us): 3000, 99th(us): 6000
+UPDATE - Count: 14314, Avg(us): 2634, Min(us): 1038, Max(us): 67946, 95th(us): 7000, 99th(us): 10000
+UPDATE - Count: 28230, Avg(us): 2676, Min(us): 1038, Max(us): 67946, 95th(us): 7000, 99th(us): 11000
+READ - Count: 28308, Avg(us): 850, Min(us): 173, Max(us): 68485, 95th(us): 3000, 99th(us): 6000
+READ - Count: 42179, Avg(us): 858, Min(us): 173, Max(us): 68485, 95th(us): 3000, 99th(us): 7000
+UPDATE - Count: 42290, Avg(us): 2678, Min(us): 1038, Max(us): 67946, 95th(us): 7000, 99th(us): 11000
+UPDATE - Count: 56232, Avg(us): 2684, Min(us): 1038, Max(us): 67946, 95th(us): 7000, 99th(us): 11000
+READ - Count: 56180, Avg(us): 860, Min(us): 173, Max(us): 68485, 95th(us): 3000, 99th(us): 7000
+READ - Count: 70296, Avg(us): 860, Min(us): 173, Max(us): 68485, 95th(us): 3000, 99th(us): 6000
+UPDATE - Count: 70400, Avg(us): 2679, Min(us): 1038, Max(us): 67946, 95th(us): 7000, 99th(us): 11000
+UPDATE - Count: 84264, Avg(us): 2689, Min(us): 1038, Max(us): 409919, 95th(us): 7000, 99th(us): 11000
+READ - Count: 84108, Avg(us): 859, Min(us): 173, Max(us): 408090, 95th(us): 3000, 99th(us): 6000
+UPDATE - Count: 98430, Avg(us): 2685, Min(us): 1038, Max(us): 409919, 95th(us): 7000, 99th(us): 11000
+READ - Count: 98173, Avg(us): 859, Min(us): 173, Max(us): 408090, 95th(us): 3000, 99th(us): 6000
+READ - Count: 112527, Avg(us): 856, Min(us): 173, Max(us): 408090, 95th(us): 3000, 99th(us): 6000
+UPDATE - Count: 112878, Avg(us): 2677, Min(us): 1038, Max(us): 409919, 95th(us): 7000, 99th(us): 11000
+UPDATE - Count: 126952, Avg(us): 2678, Min(us): 1038, Max(us): 409919, 95th(us): 7000, 99th(us): 11000
+READ - Count: 126400, Avg(us): 857, Min(us): 173, Max(us): 408090, 95th(us): 3000, 99th(us): 6000
+READ - Count: 141352, Avg(us): 855, Min(us): 173, Max(us): 408090, 95th(us): 3000, 99th(us): 7000
+UPDATE - Count: 141711, Avg(us): 2662, Min(us): 1035, Max(us): 409919, 95th(us): 7000, 99th(us): 11000
+Run finished, takes 1m45.32000411s
+READ - Count: 149944, Avg(us): 849, Min(us): 173, Max(us): 408090, 95th(us): 3000, 99th(us): 7000
+UPDATE - Count: 150056, Avg(us): 2642, Min(us): 1035, Max(us): 409919, 95th(us): 7000, 99th(us): 11000

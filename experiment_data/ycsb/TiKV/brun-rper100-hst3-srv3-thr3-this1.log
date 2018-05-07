@@ -1,0 +1,9 @@
+time="2018-05-01T23:49:32Z" level=info msg="[pd] create pd client with endpoints [172.31.29.240:2379]"
+time="2018-05-01T23:49:32Z" level=info msg="[pd] leader switches to: http://172.31.29.240:2379, previous: "
+time="2018-05-01T23:49:32Z" level=info msg="[pd] init cluster id 6550755695932324779"
+READ - Count: 73352, Avg(us): 405, Min(us): 155, Max(us): 68922, 95th(us): 1000, 99th(us): 2000
+READ - Count: 146959, Avg(us): 405, Min(us): 155, Max(us): 68922, 95th(us): 1000, 99th(us): 2000
+READ - Count: 219852, Avg(us): 406, Min(us): 155, Max(us): 68922, 95th(us): 1000, 99th(us): 2000
+READ - Count: 293124, Avg(us): 406, Min(us): 155, Max(us): 68922, 95th(us): 1000, 99th(us): 2000
+Run finished, takes 40.995961771s
+READ - Count: 300000, Avg(us): 406, Min(us): 155, Max(us): 68922, 95th(us): 1000, 99th(us): 2000
