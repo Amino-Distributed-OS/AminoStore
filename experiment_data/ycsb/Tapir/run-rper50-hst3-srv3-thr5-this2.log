@@ -1,0 +1,151 @@
+YCSB Client 0.1
+Command line: -P workloads/workload50 -t -db com.yahoo.ycsb.db.TapirClient -s -p tapir.configpath=../store/tools/shard -p tapir.nshards=8 -p tapir.closestreplica=2 -p measurement.type=histogram -p histogram.buckets=25 -threads 5 -p operationcount=300000
+Loading workload...
+Starting test.
+ 0 sec: 0 operations; 
+ 10 sec: 26205 operations; 2611.62 current ops/sec; [READ AverageLatency(us)=533.14] [COMMIT AverageLatency(us)=1355.23] [START AverageLatency(us)=0.87] [UPDATE AverageLatency(us)=547.64] 
+ 20 sec: 54094 operations; 2788.34 current ops/sec; [READ AverageLatency(us)=454.42] [COMMIT AverageLatency(us)=1326.44] [START AverageLatency(us)=0.8] [UPDATE AverageLatency(us)=464.4] 
+ 30 sec: 81962 operations; 2786.52 current ops/sec; [READ AverageLatency(us)=456.51] [COMMIT AverageLatency(us)=1327.8] [START AverageLatency(us)=0.78] [UPDATE AverageLatency(us)=464.28] 
+ 40 sec: 110000 operations; 2803.8 current ops/sec; [READ AverageLatency(us)=451.3] [COMMIT AverageLatency(us)=1319.53] [START AverageLatency(us)=0.81] [UPDATE AverageLatency(us)=465.5] 
+ 50 sec: 137997 operations; 2799.42 current ops/sec; [READ AverageLatency(us)=454.41] [COMMIT AverageLatency(us)=1322.17] [START AverageLatency(us)=0.81] [UPDATE AverageLatency(us)=460.63] 
+ 60 sec: 165911 operations; 2791.12 current ops/sec; [READ AverageLatency(us)=454.13] [COMMIT AverageLatency(us)=1325.83] [START AverageLatency(us)=0.79] [UPDATE AverageLatency(us)=465.81] 
+ 70 sec: 193630 operations; 2771.9 current ops/sec; [READ AverageLatency(us)=453.46] [COMMIT AverageLatency(us)=1339.39] [START AverageLatency(us)=0.8] [UPDATE AverageLatency(us)=464.43] 
+ 80 sec: 221455 operations; 2782.22 current ops/sec; [READ AverageLatency(us)=454.37] [COMMIT AverageLatency(us)=1331.25] [START AverageLatency(us)=0.8] [UPDATE AverageLatency(us)=466.5] 
+ 90 sec: 249345 operations; 2789 current ops/sec; [READ AverageLatency(us)=454.81] [COMMIT AverageLatency(us)=1327.98] [START AverageLatency(us)=0.81] [UPDATE AverageLatency(us)=464.14] 
+ 100 sec: 277980 operations; 2863.21 current ops/sec; [READ AverageLatency(us)=437.33] [COMMIT AverageLatency(us)=1298.72] [START AverageLatency(us)=0.79] [UPDATE AverageLatency(us)=446.99] 
+ 107 sec: 300000 operations; 2808.32 current ops/sec; [READ AverageLatency(us)=395.86] [COMMIT AverageLatency(us)=1256.19] [START AverageLatency(us)=0.8] [UPDATE AverageLatency(us)=407.06] 
+Database validation succeeded
+[OVERALL], RunTime(ms), 107883.0
+[OVERALL], Throughput(ops/sec), 2780.7903006034317
+[READ], Operations, 149718
+[READ], AverageLatency(us), 455.12615717548994
+[READ], MinLatency(us), 160
+[READ], MaxLatency(us), 8235
+[READ], 95thPercentileLatency(ms), 0
+[READ], 99thPercentileLatency(ms), 1
+[READ], Return=0, 149718
+[READ], 0, 143025
+[READ], 1, 6558
+[READ], 2, 103
+[READ], 3, 13
+[READ], 4, 14
+[READ], 5, 2
+[READ], 6, 1
+[READ], 7, 1
+[READ], 8, 1
+[READ], 9, 0
+[READ], 10, 0
+[READ], 11, 0
+[READ], 12, 0
+[READ], 13, 0
+[READ], 14, 0
+[READ], 15, 0
+[READ], 16, 0
+[READ], 17, 0
+[READ], 18, 0
+[READ], 19, 0
+[READ], 20, 0
+[READ], 21, 0
+[READ], 22, 0
+[READ], 23, 0
+[READ], 24, 0
+[READ], >25, 0
+[COMMIT], Operations, 300000
+[COMMIT], AverageLatency(us), 1321.9638266666666
+[COMMIT], MinLatency(us), 1020
+[COMMIT], MaxLatency(us), 502101
+[COMMIT], 95thPercentileLatency(ms), 1
+[COMMIT], 99thPercentileLatency(ms), 2
+[COMMIT], Return=0, 300000
+[COMMIT], 0, 0
+[COMMIT], 1, 295037
+[COMMIT], 2, 2862
+[COMMIT], 3, 219
+[COMMIT], 4, 194
+[COMMIT], 5, 112
+[COMMIT], 6, 187
+[COMMIT], 7, 856
+[COMMIT], 8, 418
+[COMMIT], 9, 103
+[COMMIT], 10, 11
+[COMMIT], 11, 0
+[COMMIT], 12, 0
+[COMMIT], 13, 0
+[COMMIT], 14, 0
+[COMMIT], 15, 0
+[COMMIT], 16, 0
+[COMMIT], 17, 0
+[COMMIT], 18, 0
+[COMMIT], 19, 0
+[COMMIT], 20, 0
+[COMMIT], 21, 0
+[COMMIT], 22, 0
+[COMMIT], 23, 0
+[COMMIT], 24, 0
+[COMMIT], >25, 1
+[START], Operations, 300000
+[START], AverageLatency(us), 0.80553
+[START], MinLatency(us), 0
+[START], MaxLatency(us), 37
+[START], 95thPercentileLatency(ms), 0
+[START], 99thPercentileLatency(ms), 0
+[START], Return=0, 300000
+[START], 0, 300000
+[START], 1, 0
+[START], 2, 0
+[START], 3, 0
+[START], 4, 0
+[START], 5, 0
+[START], 6, 0
+[START], 7, 0
+[START], 8, 0
+[START], 9, 0
+[START], 10, 0
+[START], 11, 0
+[START], 12, 0
+[START], 13, 0
+[START], 14, 0
+[START], 15, 0
+[START], 16, 0
+[START], 17, 0
+[START], 18, 0
+[START], 19, 0
+[START], 20, 0
+[START], 21, 0
+[START], 22, 0
+[START], 23, 0
+[START], 24, 0
+[START], >25, 0
+[UPDATE], Operations, 150282
+[UPDATE], AverageLatency(us), 465.902756151768
+[UPDATE], MinLatency(us), 163
+[UPDATE], MaxLatency(us), 8209
+[UPDATE], 95thPercentileLatency(ms), 0
+[UPDATE], 99thPercentileLatency(ms), 1
+[UPDATE], Return=0, 150282
+[UPDATE], 0, 143235
+[UPDATE], 1, 6887
+[UPDATE], 2, 123
+[UPDATE], 3, 23
+[UPDATE], 4, 9
+[UPDATE], 5, 2
+[UPDATE], 6, 2
+[UPDATE], 7, 0
+[UPDATE], 8, 1
+[UPDATE], 9, 0
+[UPDATE], 10, 0
+[UPDATE], 11, 0
+[UPDATE], 12, 0
+[UPDATE], 13, 0
+[UPDATE], 14, 0
+[UPDATE], 15, 0
+[UPDATE], 16, 0
+[UPDATE], 17, 0
+[UPDATE], 18, 0
+[UPDATE], 19, 0
+[UPDATE], 20, 0
+[UPDATE], 21, 0
+[UPDATE], 22, 0
+[UPDATE], 23, 0
+[UPDATE], 24, 0
+[UPDATE], >25, 0
