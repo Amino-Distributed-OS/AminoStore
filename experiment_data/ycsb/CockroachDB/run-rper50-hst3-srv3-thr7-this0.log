@@ -1,0 +1,136 @@
+java -cp /home/ubuntu/CockroachDB-ycsb/postgresql-42.2.2.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/jdbc-binding/conf:/home/ubuntu/CockroachDB-ycsb/ycsb/conf:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/openjpa-jdbc-2.1.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/serp-1.13.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/commons-collections-3.2.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/commons-lang-2.4.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/core-0.12.0.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/commons-pool-1.5.4.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/geronimo-jta_1.1_spec-1.1.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/openjpa-lib-2.1.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/jackson-mapper-asl-1.9.4.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/openjpa-kernel-2.1.1.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/jackson-core-asl-1.9.4.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/HdrHistogram-2.1.4.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/htrace-core4-4.1.0-incubating.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/jdbc-binding-0.12.0.jar:/home/ubuntu/CockroachDB-ycsb/ycsb/lib/geronimo-jms_1.1_spec-1.1.1.jar com.yahoo.ycsb.Client -db com.yahoo.ycsb.db.JdbcDBClient -P /home/ubuntu/CockroachDB-ycsb/workloads/workload50 -P /home/ubuntu/CockroachDB-ycsb/cockroachdb.properties -threads 7 -p db.url=jdbc:postgresql://172.31.39.3:26257/test -p measurementtype=histogram -p histogram.buckets=25 -p operationcount=300000 -t
+YCSB Client 0.12.0
+Command line: -db com.yahoo.ycsb.db.JdbcDBClient -P /home/ubuntu/CockroachDB-ycsb/workloads/workload50 -P /home/ubuntu/CockroachDB-ycsb/cockroachdb.properties -threads 7 -p db.url=jdbc:postgresql://172.31.39.3:26257/test -p measurementtype=histogram -p histogram.buckets=25 -p operationcount=300000 -t
+Loading workload...
+Starting test.
+Adding shard node URL: jdbc:postgresql://172.31.39.3:26257/test
+Adding shard node URL: jdbc:postgresql://172.31.39.3:26257/test
+Adding shard node URL: jdbc:postgresql://172.31.39.3:26257/test
+Adding shard node URL: jdbc:postgresql://172.31.39.3:26257/test
+Adding shard node URL: jdbc:postgresql://172.31.39.3:26257/test
+Adding shard node URL: jdbc:postgresql://172.31.39.3:26257/test
+Adding shard node URL: jdbc:postgresql://172.31.39.3:26257/test
+Using shards: 1, batchSize:-1, fetchSize: -1
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+Using shards: 1, batchSize:-1, fetchSize: -1
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+Using shards: 1, batchSize:-1, fetchSize: -1
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+Using shards: 1, batchSize:-1, fetchSize: -1
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+Using shards: 1, batchSize:-1, fetchSize: -1
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+Using shards: 1, batchSize:-1, fetchSize: -1
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+Using shards: 1, batchSize:-1, fetchSize: -1
+DBWrapper: report latency for each error is false and specific error codes to track for latency are: []
+[OVERALL], RunTime(ms), 576627.0
+[OVERALL], Throughput(ops/sec), 520.267001024926
+[TOTAL_GCS_PS_Scavenge], Count, 19.0
+[TOTAL_GC_TIME_PS_Scavenge], Time(ms), 25.0
+[TOTAL_GC_TIME_%_PS_Scavenge], Time(%), 0.004335558341874383
+[TOTAL_GCS_PS_MarkSweep], Count, 0.0
+[TOTAL_GC_TIME_PS_MarkSweep], Time(ms), 0.0
+[TOTAL_GC_TIME_%_PS_MarkSweep], Time(%), 0.0
+[TOTAL_GCs], Count, 19.0
+[TOTAL_GC_TIME], Time(ms), 25.0
+[TOTAL_GC_TIME_%], Time(%), 0.004335558341874383
+[READ], Operations, 150170
+[READ], AverageLatency(us), 4084.457161883199
+[READ], LatencyVariance(us), 5.962137871614366E8
+[READ], MinLatency(us), 291
+[READ], MaxLatency(us), 2058029
+[READ], 95thPercentileLatency(us), 3000
+[READ], Return=OK, 150170
+[READ], 0, 77273
+[READ], 1, 50787
+[READ], 2, 12445
+[READ], 3, 2415
+[READ], 4, 811
+[READ], 5, 448
+[READ], 6, 244
+[READ], 7, 159
+[READ], 8, 102
+[READ], 9, 62
+[READ], 10, 44
+[READ], 11, 61
+[READ], 12, 43
+[READ], 13, 31
+[READ], 14, 53
+[READ], 15, 96
+[READ], 16, 98
+[READ], 17, 119
+[READ], 18, 108
+[READ], 19, 66
+[READ], 20, 34
+[READ], 21, 35
+[READ], 22, 40
+[READ], 23, 24
+[READ], 24, 21
+[READ], >25, 4551
+[CLEANUP], Operations, 7
+[CLEANUP], AverageLatency(us), 99.14285714285714
+[CLEANUP], LatencyVariance(us), 6050.693877551021
+[CLEANUP], MinLatency(us), 57
+[CLEANUP], MaxLatency(us), 288
+[CLEANUP], 95thPercentileLatency(us), 0
+[CLEANUP], 99thPercentileLatency(us), 0
+[CLEANUP], 0, 7
+[CLEANUP], 1, 0
+[CLEANUP], 2, 0
+[CLEANUP], 3, 0
+[CLEANUP], 4, 0
+[CLEANUP], 5, 0
+[CLEANUP], 6, 0
+[CLEANUP], 7, 0
+[CLEANUP], 8, 0
+[CLEANUP], 9, 0
+[CLEANUP], 10, 0
+[CLEANUP], 11, 0
+[CLEANUP], 12, 0
+[CLEANUP], 13, 0
+[CLEANUP], 14, 0
+[CLEANUP], 15, 0
+[CLEANUP], 16, 0
+[CLEANUP], 17, 0
+[CLEANUP], 18, 0
+[CLEANUP], 19, 0
+[CLEANUP], 20, 0
+[CLEANUP], 21, 0
+[CLEANUP], 22, 0
+[CLEANUP], 23, 0
+[CLEANUP], 24, 0
+[CLEANUP], >25, 0
+[UPDATE], Operations, 149830
+[UPDATE], AverageLatency(us), 22445.799285857305
+[UPDATE], LatencyVariance(us), 1.7406467058426407E10
+[UPDATE], MinLatency(us), 1266
+[UPDATE], MaxLatency(us), 5930337
+[UPDATE], 95thPercentileLatency(us), 8000
+[UPDATE], Return=OK, 149830
+[UPDATE], 0, 0
+[UPDATE], 1, 53281
+[UPDATE], 2, 32434
+[UPDATE], 3, 33371
+[UPDATE], 4, 15842
+[UPDATE], 5, 4554
+[UPDATE], 6, 1758
+[UPDATE], 7, 901
+[UPDATE], 8, 525
+[UPDATE], 9, 373
+[UPDATE], 10, 260
+[UPDATE], 11, 215
+[UPDATE], 12, 144
+[UPDATE], 13, 123
+[UPDATE], 14, 88
+[UPDATE], 15, 66
+[UPDATE], 16, 59
+[UPDATE], 17, 58
+[UPDATE], 18, 53
+[UPDATE], 19, 61
+[UPDATE], 20, 58
+[UPDATE], 21, 48
+[UPDATE], 22, 28
+[UPDATE], 23, 21
+[UPDATE], 24, 19
+[UPDATE], >25, 5490
