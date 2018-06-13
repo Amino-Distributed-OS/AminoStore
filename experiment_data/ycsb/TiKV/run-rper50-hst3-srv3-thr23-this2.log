@@ -1,0 +1,14 @@
+time="2018-05-16T21:03:15Z" level=info msg="[pd] create pd client with endpoints [172.31.10.55:2379]"
+time="2018-05-16T21:03:15Z" level=info msg="[pd] leader switches to: http://172.31.29.240:2379, previous: "
+time="2018-05-16T21:03:15Z" level=info msg="[pd] init cluster id 6556277737172874115"
+READ - Count: 30974, Avg(us): 1761, Min(us): 232, Max(us): 85612, 95th(us): 6000, 99th(us): 9000
+UPDATE - Count: 30809, Avg(us): 5678, Min(us): 970, Max(us): 89973, 95th(us): 13000, 99th(us): 18000
+UPDATE - Count: 60597, Avg(us): 5794, Min(us): 862, Max(us): 89973, 95th(us): 13000, 99th(us): 20000
+READ - Count: 60209, Avg(us): 1792, Min(us): 229, Max(us): 85612, 95th(us): 6000, 99th(us): 10000
+READ - Count: 90857, Avg(us): 1777, Min(us): 229, Max(us): 85612, 95th(us): 6000, 99th(us): 10000
+UPDATE - Count: 91226, Avg(us): 5777, Min(us): 862, Max(us): 89973, 95th(us): 13000, 99th(us): 19000
+READ - Count: 120717, Avg(us): 1778, Min(us): 229, Max(us): 85612, 95th(us): 6000, 99th(us): 10000
+UPDATE - Count: 120911, Avg(us): 5818, Min(us): 862, Max(us): 89973, 95th(us): 13000, 99th(us): 19000
+Run finished, takes 49.193126031s
+READ - Count: 150078, Avg(us): 1756, Min(us): 228, Max(us): 85612, 95th(us): 6000, 99th(us): 10000
+UPDATE - Count: 149911, Avg(us): 5738, Min(us): 855, Max(us): 89973, 95th(us): 13000, 99th(us): 19000
