@@ -1,0 +1,19 @@
+YCSB Client 0.1
+Command line: -P workloads/workload100 -t -db com.yahoo.ycsb.db.TapirClient -s -p tapir.configpath=../store/tools/shard -p tapir.nshards=8 -p tapir.closestreplica=0 -p measurement.type=histogram -p histogram.buckets=25 -threads 5 -p operationcount=150000
+Loading workload...
+Starting test.
+ 0 sec: 0 operations; 
+20180417-210810-3502 04171 ! (null)          (libevent:0):       evthread.c:349: Assertion lock_ == NULL failed in evthread_setup_global_lock_
+20180417-210810-3502 04171 PANIC FatalCallback   (udptransport.cc:778): Fatal libevent error: -559030611
+20180417-210810-3508 04171 ! _Panic          (message.cc:173):   /home/ubuntu/DCAP-Tapir/ycsb-t/libs/libtapir.so(_Z6_Panicv+0x2e) [0x7f8af01d459b]
+20180417-210810-3509 04171 ! _Panic          (message.cc:173):   /home/ubuntu/DCAP-Tapir/ycsb-t/libs/libtapir.so(+0x17973b) [0x7f8af01de73b]
+20180417-210810-3509 04171 ! _Panic          (message.cc:173):   /usr/lib/x86_64-linux-gnu/libevent-2.0.so.5(+0x1e4b1) [0x7f8ab3aba4b1]
+20180417-210810-3509 04171 ! _Panic          (message.cc:173):   /usr/lib/x86_64-linux-gnu/libevent-2.0.so.5(+0x1e8b8) [0x7f8ab3aba8b8]
+20180417-210810-3509 04171 ! _Panic          (message.cc:173):   /usr/lib/x86_64-linux-gnu/libevent-2.0.so.5(evthread_setup_global_lock_+0x175) [0x7f8ab3aaddb5]
+20180417-210810-3509 04171 ! _Panic          (message.cc:173):   /usr/lib/x86_64-linux-gnu/libevent-2.0.so.5(evsig_global_setup_locks_+0x14) [0x7f8ab3abf644]
+20180417-210810-3509 04171 ! _Panic          (message.cc:173):   /usr/lib/x86_64-linux-gnu/libevent-2.0.so.5(event_global_setup_locks_+0x26) [0x7f8ab3aad236]
+20180417-210810-3510 04171 ! _Panic          (message.cc:173):   /usr/lib/x86_64-linux-gnu/libevent_pthreads-2.0.so.5(evthread_use_pthreads+0xbb) [0x7f8ae01ee06b]
+20180417-210810-3510 04171 ! _Panic          (message.cc:173):   /home/ubuntu/DCAP-Tapir/ycsb-t/libs/libtapir.so(_ZN12UDPTransportC1Eddib+0x26f) [0x7f8af01dba6b]
+20180417-210810-3510 04171 ! _Panic          (message.cc:173):   /home/ubuntu/DCAP-Tapir/ycsb-t/libs/libtapir.so(_ZN10tapirstore6ClientC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEii8TrueTime+0xb0) [0x7f8af024e01c]
+20180417-210810-3510 04171 ! _Panic          (message.cc:173):   /home/ubuntu/DCAP-Tapir/ycsb-t/libs/libjniTapir.so(Java_com_yahoo_ycsb_Tapir_00024Client_allocate+0x262) [0x7f8af04b2202]
+20180417-210810-3510 04171 ! _Panic          (message.cc:173):   [0x7f8af1018407]
