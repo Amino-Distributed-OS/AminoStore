@@ -3,9 +3,8 @@
 # Script to run YCSB workloads on CockroachDB insecure cluster
 
 
-replicas=("172.31.43.8" "172.31.20.205" "172.31.8.131" "172.31.32.118" "172.31.26.209" "172.31.12.41"\
-          "172.31.35.12" "172.31.30.218" "172.31.10.193")
-# replica av. zone: us1, us2, us3, us1, us2, us3, us1, us2, us3
+replicas=("172.31.38.96" "172.31.26.122" "172.31.5.33")
+# replica av. zone: us1, us2, us3
 nserv=${#replicas[@]}
 
 crdb_port=26257
@@ -22,7 +21,7 @@ ycsb_wdir="/home/ubuntu/CockroachDB-ycsb"
 jdbc_binding_jar="/home/ubunutu/CockroachDB-ycsb/lib/jdbc-binding-0.12.0.jar"
 postgresql_jar="/home/ubuntu/CockroachDB-ycsb/postgresql-42.2.2.jar"
 
-need_setup=false		# true - create database and table, load records and run workloads; false - run workloads  (if cluster is running)
+need_setup=true			# true - create database and table, load records and run workloads; false - run workloads  (if cluster is running)
 
 follow_the_workload=false	# true - all workload goes through one server (clients connect to one server); false - balanced workload (client connects to a server in its av.zone)
 range_max_bytes=25000000 	# effects number of shards (less renge_max_bytes, more shards); current number gives 8 shards for workload (1 mln keys, 1 field, field length 100)
@@ -75,20 +74,14 @@ if [[ "$need_setup" == true ]]; then
 
 
 # Load workload
+# Sending record to all nodes in the cluster. It takes longer to load but provides evenly distributed  raft group leaders
+  db_url=`joinBy , ${jdbc_urls[@]}`
   echo "Loading records"
-  ycsb/bin/ycsb load jdbc -P $workload -P cockroachdb.properties -p db.url=${jdbc_urls[0]} \
+  ycsb/bin/ycsb load jdbc -P $workload -P cockroachdb.properties -p db.url=$db_url \
        -p measurementtype=histogram -p histogram.buckets=25 -s -cp $postgresql_jar > load.log 2>&1 
 fi
 
 sleep 10
-
-# Warm up
-#echo "Warming up"
-#db_url=`joinBy , ${jdbc_urls[@]}`
-#$ycsb_wdir/ycsb/bin/ycsb run jdbc -P $ycsb_wdir/workloads/workload100 -P $ycsb_wdir/cockroachdb.properties -threads 4  -p db.url=$db_url \
-#         -p measurementtype=histogram  -p histogram.buckets=25 -p operationcount=1000 -cp $postgresql_jar > $ycsb_wdir/warmup.log 2>&1
-
-#sleep 10
 
 
 # Run workload

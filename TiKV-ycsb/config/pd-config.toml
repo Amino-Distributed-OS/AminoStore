@@ -1,0 +1,26 @@
+# PD Configuration
+
+[replication]
+# The number of replicas for each region.
+max-replicas = 3
+# The label keys specified the location of a store.
+# The placement priorities is implied by the order of label keys.
+# For example, ["zone", "rack"] means that we should place replicas to
+# different zones first, then to different racks if we don't have enough zones.
+location-labels = ["zone"]
+
+[schedule]
+#max-merge-region-size = 0
+#max-snapshot-count = 3
+#max-pending-peer-count = 16
+#max-store-down-time = "30m"
+#leader-schedule-limit = 4
+#region-schedule-limit = 1
+#replica-schedule-limit = 8
+#merge-schedule-limit = 8
+#tolerant-size-ratio = 5
+
+# customized schedulers, the format is as below
+# if empty, it will use balance-leader, balance-region, hot-region as default
+#[[schedule.schedulers]]
+#type = "balance-region"
