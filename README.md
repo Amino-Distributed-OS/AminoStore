@@ -1,14 +1,14 @@
-# TAPIR
+# AminoStore
 
-This repository includes code implementing TAPIR -- the Transaction
-Application Protocol for Inconsistent Replication. This code was used
-for the SOSP 2015 paper, ["Building Consistent Transactions with
+This repository includes code implementing AminoStore -- A fault-tolerant, transactional data store. 
+This code is based on the research described in 
+the SOSP 2015 paper, ["Building Consistent Transactions with
 Inconsistent Replication."](http://dl.acm.org/authorize?N93281)
 
-TAPIR is a new protocol for linearizable distributed transactions
+AminoStore incorporates TAPIR, a new protocol for linearizable distributed transactions
 built using replication with no consistency guarantees. By enforcing
-consistency only at the transaction layer, TAPIR eliminates
-coordination at the replication layer, enabling TAPIR to provide the
+consistency only at the transaction layer,
+coordination at the replication layer is eliminated, enabling the
 same transaction model and consistency guarantees as existing systems,
 like Spanner, with better latency and throughput.
 
@@ -50,9 +50,9 @@ The repo is structured as follows:
 - /lockserver - a lock server designed to be used with IR
 
 ## Compiling & Running
-You can compile all of the TAPIR executables by running make in the root directory
+You can compile all of the executables by running make in the root directory
 
-TAPIR depends on protobufs and libevent, so you will need those development libraries installed on your machine. On Linux, this can be done through apt.
+AminoStore depends on protobufs and libevent, so you will need those development libraries installed on your machine. On Linux, this can be done through apt.
 
 ## Contact and Questions
-Please email Irene at iyzhang@cs.washington.edu, Dan at drkp@cs.washington.edu and Naveen at naveenks@cs.washington.edu
+Please email Quinton at quinton.hoole@huawei.com, Irene at iyzhang@cs.washington.edu, Dan at drkp@cs.washington.edu
